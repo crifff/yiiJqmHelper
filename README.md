@@ -9,7 +9,7 @@ src:
 dist:
 
 ```html
-<a data-theme="a" data-role="button" href="#">hoge</a>
+<a data-role="button" href="#">hoge</a>
 ```
 
 ###theme
