@@ -4,7 +4,8 @@
 class Jqm extends CHtml
 {
   public static $defaultTags=array(
-    'button'=>'a'
+    'button'=>'a',
+    'listview'=>'ul',
   );
 
   public static function button($text='', $url='#', $htmlOptions=array(), $closeTag=true)
@@ -16,9 +17,15 @@ class Jqm extends CHtml
     return self::tag(self::$defaultTags['button'],$htmlOptions,$text,$closeTag);
   }
 
+  public static function listview($text, $htmlOptions=array(), $closeTag=true)
+  {
+    $htmlOptions=self::dataProperty($htmlOptions,'listview');
+    return self::tag(self::$defaultTags['listview'],$htmlOptions,$text,$closeTag);
+  }
+
   public static function __callStatic($name, $args)
   {
-    if(!empty($args) && is_array($args) && !is_array($args[count($args)-1]))
+    if(count($args)===0 || !is_array($args[count($args)-1]))
       $args[]=array();
 
     if(ctype_upper(substr($name,-1,1)))

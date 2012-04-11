@@ -61,4 +61,44 @@ class JqmTest extends CDbTestCase
       Jqm::openButtonF('#',array('data'=>array('icon'=>'home','iconpos'=>'top')))
     );
   }
+
+  public function testListview()
+  {
+    $this->assertEquals(
+      '<ul data-role="listview" data-theme="a">hoge</ul>',
+      Jqm::listview('hoge')
+    );
+  }
+
+  public function testListviewTheme()
+  {
+    $this->assertEquals(
+      '<ul data-theme="c" data-role="listview">hoge</ul>',
+      Jqm::listviewC('hoge')
+    );
+  }
+
+  public function testOpenListview()
+  {
+    $this->assertEquals(
+      '<ul data-role="listview" data-theme="a">',
+      Jqm::openListview()
+    );
+  }
+
+  public function testClose()
+  {
+    $this->assertEquals(
+      '</ul>',
+      Jqm::closeListview()
+    );
+  }
+  
+  public function testOpenListviewTheme()
+  {
+    $this->assertEquals(
+      '<ul data-theme="d" data-role="listview">',
+      Jqm::openListviewD()
+    );
+  }
 }
