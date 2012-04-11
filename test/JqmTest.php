@@ -5,7 +5,7 @@ class JqmTest extends CDbTestCase
   public function testButton()
   {
     $this->assertEquals(
-      '<a data-role="button" data-theme="a" href="#">hoge</a>',
+      '<a data-role="button">hoge</a>',
       Jqm::button('hoge')
     );
   }
@@ -33,7 +33,7 @@ class JqmTest extends CDbTestCase
   public function testOpenButton()
   {
     $this->assertEquals(
-      '<a class="hoge" data-role="button" data-theme="a" href="#">',
+      '<a class="hoge" data-role="button" href="#">',
       Jqm::openButton('#',array('class'=>'hoge'))
     );
   }
@@ -65,7 +65,7 @@ class JqmTest extends CDbTestCase
   public function testListview()
   {
     $this->assertEquals(
-      '<ul data-role="listview" data-theme="a">hoge</ul>',
+      '<ul data-role="listview">hoge</ul>',
       Jqm::listview('hoge')
     );
   }
@@ -81,7 +81,7 @@ class JqmTest extends CDbTestCase
   public function testOpenListview()
   {
     $this->assertEquals(
-      '<ul data-role="listview" data-theme="a">',
+      '<ul data-role="listview">',
       Jqm::openListview()
     );
   }
@@ -99,6 +99,30 @@ class JqmTest extends CDbTestCase
     $this->assertEquals(
       '<ul data-theme="d" data-role="listview">',
       Jqm::openListviewD()
+    );
+  }
+
+  public function testPageTheme()
+  {
+    $this->assertEquals(
+      '<div data-role="page">hoge</div>',
+      Jqm::page('hoge')
+    );
+  }
+
+  public function testDialog()
+  {
+    $this->assertEquals(
+      '<div class="fuga" data-theme="c" data-role="dialog" data-dom-cache="true" data-close-btn-text="hoge">',
+      Jqm::openDialogC('hoge',array('data'=>array('dom-cache'=>'true','close-btn-text'=>'hoge'),'class'=>'fuga'))
+    );
+  }
+
+  public function testDefaultTheme()
+  {
+    $this->assertEquals(
+      '<div data-role="page">hoge</div>',
+      Jqm::page('hoge')
     );
   }
 }
