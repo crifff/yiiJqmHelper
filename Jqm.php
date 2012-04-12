@@ -3,8 +3,8 @@
 
 class Jqm extends CHtml
 {
-  public static $defaultTheme='';
-  public static $defaultTags=array(
+   static public $defaultTheme='';
+   static public $defaultTags=array(
     'button'=>'a',
     'listview'=>'ul',
     'page'=>'div',
@@ -84,7 +84,7 @@ class Jqm extends CHtml
     if(!isset($htmlOptions['data-role']))
       $htmlOptions['data-role']=$defaultRole;
     if(self::$defaultTheme && !isset($htmlOptions['data-theme']))
-      $htmlOptions['data-theme']=$defaultTheme;
+      $htmlOptions['data-theme']=self::$defaultTheme;
 
     return $htmlOptions;
   }

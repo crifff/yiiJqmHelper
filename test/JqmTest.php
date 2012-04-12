@@ -125,4 +125,19 @@ class JqmTest extends CDbTestCase
       Jqm::page('hoge')
     );
   }
+
+  public function testSetDefaultTheme()
+  {
+    Jqm::$defaultTheme='x';
+    $this->assertEquals('x', Jqm::$defaultTheme);
+    $this->assertEquals('<div data-role="content" data-theme="x">hoge</div>',Jqm::content('hoge')
+    );
+  }
+
+  public function testSetDefaultTags()
+  {
+    Jqm::$defaultTags['navbar']='ul';
+    $this->assertEquals('ul', Jqm::$defaultTags['navbar']);
+    $this->assertEquals('<ul data-role="navbar" data-theme="x">hoge</ul>',Jqm::navbar('hoge'));
+  }
 }
