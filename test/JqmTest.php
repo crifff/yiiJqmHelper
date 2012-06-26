@@ -10,11 +10,25 @@ class JqmTest extends CDbTestCase
     );
   }
 
-  public function testButtonTheme()
-  {
+  public function testButtonTheme() {
     $this->assertEquals(
       '<a data-theme="b" data-role="button" href="/index">hoge</a>',
       Jqm::buttonB('hoge','/index')
+    );
+  }
+
+  public function testArrayHref() {
+    $url=Yii::app()->createUrl('citizen/index');
+    $this->assertEquals(
+      '<a data-theme="b" data-role="button" href="'.$url.'/bbs/123">hoge</a>',
+      Jqm::buttonB('hoge',array('citizen/bbsRead','id'=>123))
+    );
+  }
+  public function testArrayHrefWithOptions() {
+    $url=Yii::app()->createUrl('citizen/index');
+    $this->assertEquals(
+      '<a class="hoge" id="fuga" data-theme="b" data-role="button" href="'.$url.'/bbs/123">hoge</a>',
+      Jqm::buttonB('hoge',array('citizen/bbsRead','id'=>123),array('class'=>'hoge','id'=>'fuga'))
     );
   }
 
@@ -139,5 +153,15 @@ class JqmTest extends CDbTestCase
     Jqm::$defaultTags['navbar']='ul';
     $this->assertEquals('ul', Jqm::$defaultTags['navbar']);
     $this->assertEquals('<ul data-role="navbar" data-theme="x">hoge</ul>',Jqm::navbar('hoge'));
+  }
+
+  public function testNotExistFunction()
+  {
+    try{
+      Jqm::HogeX();
+    }catch(Exception $e){
+      $this->isTrue();
+    }
+    $this->isFalse();
   }
 }

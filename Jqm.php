@@ -33,7 +33,8 @@ class Jqm extends CHtml
 
   public static function __callStatic($name, $args)
   {
-    if(count($args)===0 || !is_array($args[count($args)-1]))
+    $last=count($args)-1;
+    if(count($args)===0 || !is_array($args[$last]) || isset($args[$last][0]))
       $args[]=array();
 
     if(ctype_upper(substr($name,-1,1)))
@@ -59,16 +60,13 @@ class Jqm extends CHtml
     else
       $role = strtolower(array_shift($matches));
 
-    if(method_exists(__CLASS__,'role'))
-    {
-      if(count($args)==2){
-        $args=array($args[0],'',$args[1]);
-      }
-      $args[count($args)-1]['data-role']=$role;
-      $args[]=$closeTag;
-      $args[]=$role;
-      return forward_static_call_array(array('self','role'),$args);
+    if(count($args)==2){
+      $args=array($args[0],'',$args[1]);
     }
+    $args[count($args)-1]['data-role']=$role;
+    $args[]=$closeTag;
+    $args[]=$role;
+    return forward_static_call_array(array('self','role'),$args);
   }
 
   protected static function dataProperty($htmlOptions,$defaultRole)
